@@ -129,3 +129,62 @@ bool Pyramid_Tic_Tac_Toe_Board::game_is_over() {
     return n_moves == 9;
 }
 
+// Display the current state of the Pyramid Tic-Tac-Toe board
+void Pyramid_Tic_Tac_Toe_Board::display_board() {
+    // Display the column numbers
+    cout << "  0   1   2   3   4\n";
+    cout << "======================\n";
+
+    // Display the board with markings
+    for (int i = 0; i < 3; ++i) {
+
+        cout << i << "|";
+
+        for (int j = 0; j < 5; ++j) {
+
+            if (i == 0) {
+                if (j == 2) {
+
+                    if (board[i][j] == '0')
+                        cout << "   |";
+                    else
+                        cout << " " << board[i][j] << " |";
+                }
+
+                else {
+                    cout << " - |";
+                }
+            }
+
+            else if (i == 1) {
+
+                if (j == 1 || j == 2 || j == 3) {
+
+                    if (board[i][j] == '0')
+                        cout << "   |";
+                    else
+                        cout << " " << board[i][j] << " |";
+                }
+
+                else
+                    cout << " - |";
+            }
+
+            else if (i == 2) {
+
+                if (board[i][j] == '0')
+                    cout << "   |";
+
+                else
+                    cout << " " << board[i][j] << " |";
+            }
+        }
+
+        cout << endl;
+        cout << " |___|___|___|___|___|\n";
+    }
+
+    cout << "======================\n";
+
+    cout << "It is not allowed to play in (-) places\n";
+}
