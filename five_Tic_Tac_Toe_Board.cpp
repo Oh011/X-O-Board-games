@@ -459,3 +459,48 @@ bool five_Tic_Tac_Toe_Board::is_winner() {
 }
 
 
+bool five_Tic_Tac_Toe_Board::game_is_over() {
+    return n_moves==24;
+}
+
+
+bool five_Tic_Tac_Toe_Board::is_draw() {
+    return (n_moves==24 && !is_winner());
+}
+
+void five_Tic_Tac_Toe_Board::display_board() {
+
+    cout<<"  0   1   2   3   4   \n";
+    cout<<"=========================\n";
+
+
+    for (int i = 0; i <5 ; ++i) {
+        cout<<i<<"|";
+
+
+        for (int j = 0; j <5 ; ++j) {
+
+            if (board[i][j]=='0')
+                cout<<"   |";
+
+
+            else
+                cout << " " << board[i][j] << " |";
+
+        }
+
+        cout<<endl;
+
+
+    }
+    cout<<"==============================\n";
+
+}
+
+
+
+
+
+
+
+
