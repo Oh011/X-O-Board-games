@@ -27,3 +27,29 @@ Pyramid_Tic_Tac_Toe_Board::Pyramid_Tic_Tac_Toe_Board() {
             board[i][j] = '0';
     }
 }
+
+// Update the game board with the player's move
+bool Pyramid_Tic_Tac_Toe_Board::update_board(int x, int y, char mark) {
+
+    // Check if the move is within the valid boundaries
+    if (x == 0 && y != 2)
+        return false;
+
+    if (x == 1 && (y == 4 || y == 0))
+        return false;
+
+    if ((x < 0 || y < 0) || (x > 2 || y > 4))
+        return false;
+
+        // Check if the chosen cell is not empty
+    else if (board[x][y] != '0' ) {
+        cout << "This place has a mark\n";
+        return false;
+    }
+
+        // Valid move, update the board
+    else {
+        board[x][y] = toupper(mark);
+        n_moves++;
+        return true;
+    }
