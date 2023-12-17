@@ -327,4 +327,135 @@ bool five_Tic_Tac_Toe_Board::is_winner() {
         diagonal_o = 1;
         r = 0;
         c = 0;
+ for (int i = 1; i <= 2; ++i) {
+            r = i;
+            for (int j = 0; j < 3; ++j) {
+
+                if (diagonal_o == 3) {
+
+                    ++count_o;
+                    diagonal_o = 1;
+                }
+
+                if (i == 2 && r == 4)
+                    break;
+
+
+                if (board[r][c] == board[r + 1][c + 1] && board[r][c] != '0' && board[r][c] == 'O') {
+                    ++diagonal_o;
+                    ++r;
+                    ++c;
+                } else {
+                    diagonal_o = 1;
+                    ++r;
+                    ++c;
+                }
+
+
+            }
+            c = 0;
+
+
+        }
+
+
+        r = 0;
+        c = 0;
+        diagonal_o = 1;
+
+
+        for (int i = 2; i <= 4; ++i) {
+            r = i;
+            for (int j = 0; j < 4; ++j) {
+
+
+                if (diagonal_o == 3) {
+
+
+                    ++count_o;
+                    diagonal_o = 1;
+                }
+                if (i == 2 && r == 0)
+                    break;
+
+                if (i == 3 && r == 0)
+                    break;
+
+
+                if (board[r][c] == board[r - 1][c + 1] && board[r][c] != '0' && board[r][c] == 'O') {
+                    ++diagonal_o;
+                    --r;
+                    ++c;
+                } else {
+                    diagonal_o = 1;
+                    --r;
+                    ++c;
+                }
+
+
+            }
+
+            c = 0;
+        }
+
+
+        r = 4;
+        c = 0;
+        diagonal_o = 0;
+
+        for (int i = 1; i <= 2; ++i) {
+            c = i;
+            for (int j = 0; j < 3; ++j) {
+
+                if (diagonal_o == 3) {
+
+
+                    ++count_o;
+                    diagonal_o = 1;
+                }
+
+
+                if (i == 2 && r == 2)
+                    break;
+
+
+                if (board[r][c] == board[r - 1][c + 1] && board[r][c] != '0' && board[r][c] == 'O') {
+                    ++diagonal_o;
+                    --r;
+                    ++c;
+                } else {
+                    diagonal_o = 1;
+                    --r;
+                    ++c;
+                }
+
+
+            }
+
+            r = 4;
+        }
+
+        if (count_x > count_o){
+            cout<<"Player with symbol X is winner\n";
+            return true;
+        }
+
+        else if (count_o > count_x){
+            cout<<"Player with symbol O is winner\n";
+            return true;
+        }
+
+        else if(count_x == count_o){
+            return false;
+        }
+
+        return false;
+
+
+
+    }
+
+
+}
+
 
