@@ -246,3 +246,36 @@ bool Four_in_a_row_Board::is_winner() {
 
     return false;
 }
+bool Four_in_a_row_Board::is_draw() {
+    return (n_moves ==42 && !is_winner());
+}
+
+void Four_in_a_row_Board::display_board() {
+    cout<<"  0   1   2   3   4   5   6\n";
+    cout<<"==============================\n";
+
+
+    for (int i = 0; i <6 ; ++i) {
+        cout<<i<<"|";
+
+
+        for (int j = 0; j <7 ; ++j) {
+
+            if (board[i][j]=='0')
+                cout<<"   |";
+
+
+            else
+                cout << " " << board[i][j] << " |";
+
+        }
+        cout<<endl;
+    }
+    cout<<"==============================\n";
+
+
+}
+
+bool Four_in_a_row_Board::game_is_over() {
+    return n_moves==42;
+}
