@@ -122,3 +122,10 @@ bool Pyramid_Tic_Tac_Toe_Board::is_winner() {
 bool Pyramid_Tic_Tac_Toe_Board::is_draw() {
     return (n_moves == 9 && !is_winner());
 }
+
+
+// Check if the game is over (either a win or a draw)
+bool Pyramid_Tic_Tac_Toe_Board::game_is_over() {
+    return n_moves == 9;
+}
+
