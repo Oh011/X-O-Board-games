@@ -287,3 +287,44 @@ bool five_Tic_Tac_Toe_Board::is_winner() {
         r = 0;
         c = 0;
 
+
+        for (int i = 0; i <= 2; ++i) {
+            c = i;
+            for (int j = 0; j < 4; ++j) {
+
+                if (diagonal_o == 3) {
+
+
+                    ++count_o;
+                    diagonal_o = 1;
+                }
+                if (i == 1 && r == 3)
+                    break;
+
+                if (i == 2 && r == 2)
+                    break;
+
+
+                if (board[r][c] == board[r + 1][c + 1] && board[r][c] != '0' && board[r][c] == 'O') {
+                    ++diagonal_o;
+                    ++r;
+                    ++c;
+
+                } else {
+                    diagonal_o = 1;
+                    ++r;
+                    ++c;
+
+                }
+
+
+            }
+
+            r = 0;
+        }
+
+
+        diagonal_o = 1;
+        r = 0;
+        c = 0;
+
