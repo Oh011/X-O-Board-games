@@ -118,3 +118,7 @@ bool Pyramid_Tic_Tac_Toe_Board::is_winner() {
     return false;
 }
 
+// Check if the game is a draw
+bool Pyramid_Tic_Tac_Toe_Board::is_draw() {
+    return (n_moves == 9 && !is_winner());
+}
