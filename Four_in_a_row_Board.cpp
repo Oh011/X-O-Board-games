@@ -33,216 +33,58 @@ bool Four_in_a_row_Board::update_board(int x, int y, char mark) {
     }
 }
 bool Four_in_a_row_Board::is_winner() {
+const int rows = 6;
+    const int cols = 7;
+    // Check for horizontal and vertical wins
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            char currentCell = board[i][j];
 
-    int horzontal_win=1;
-
-
-    // Check for horizontal wins and loop through rows
-    for (int i = 0; i <=5 ; ++i) {
-        for (int j = 0; j <6 ; ++j) {
-
-            if (horzontal_win == 4)
+            // Horizontal win check
+            if (j + 3 < cols &&
+                currentCell != '0' &&
+                currentCell == board[i][j + 1] &&
+                currentCell == board[i][j + 2] &&
+                currentCell == board[i][j + 3]) {
                 return true;
+            }
 
-            if (board[i][j]==board[i][j+1] && board[i][j]!='0')
-                ++horzontal_win;
-
-
-            else
-                horzontal_win=1;
-
-        }
-    }
-
-    if (horzontal_win == 4) {
-        return true;
-    }
-    int column_win=1;
-
-
-    for (int i = 0; i <=6 ; ++i) {
-        for (int j = 0; j <=4 ; ++j) {
-
-            if (column_win == 4)
+            // Vertical win check
+            if (i + 3 < rows &&
+                currentCell != '0' &&
+                currentCell == board[i + 1][j] &&
+                currentCell == board[i + 2][j] &&
+                currentCell == board[i + 3][j]) {
                 return true;
-
-            if (board[j][i]==board[j+1][i]  && board[j][i]!='0')
-                ++column_win;
-
-            else
-                column_win=1;
-
-        }
-    }
-
-
-    if (column_win == 4)
-        return true;
-
-
-    int diagonal_win=1;
-
-    int r=0;
-    int c=0;
-
-
-    for (int i = 0; i <=3 ; ++i) {
-        c=i;
-        for (int j = 0; j <5 ; ++j) {
-
-            if (diagonal_win == 4)
-                return true;
-
-
-            if (i==1 && r==5)
-                break;
-
-            if (i==2 && r==4)
-                break;
-
-            if(i==3 && r==3 )
-                break;
-
-            else{
-
-                if (board[r][c]==board[r+1][c+1] && board[r][c]!='0'){
-                    ++diagonal_win;
-                    ++r;
-                    ++c;
-                }
-
-                else{
-
-                    diagonal_win=1;
-                    ++r;
-                    ++c;
-                }
             }
         }
-
-        r=0;
     }
 
-    if (diagonal_win == 4)
-        return true;
+    // Check for diagonal wins
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            char currentCell = board[i][j];
 
-    r=0;
-    c=0;
-    diagonal_win=1;
-
-
-    for (int i =1; i <=2 ; ++i) {
-        r=i;
-        for (int j = 0; j <4 ; ++j) {
-
-            if (diagonal_win == 4)
-                return true;
-
-
-            if (i==2 && r==5)
-                break;
-
-
-            else{
-                if (board[r][c]==board[r+1][c+1] && board[r][c]!='0'){
-                    ++diagonal_win;
-                    ++r;
-                    ++c;
-
-                }
-
-                else{
-                    diagonal_win=1;
-                    ++r;
-                    ++c;
+            // Diagonal win checks
+            if (j + 3 < cols && i + 3 < rows) {
+                if (currentCell != '0' &&
+                    currentCell == board[i + 1][j + 1] &&
+                    currentCell == board[i + 2][j + 2] &&
+                    currentCell == board[i + 3][j + 3]) {
+                    return true;
                 }
             }
 
-
-        }
-        c=0;
-    }
-
-    if (diagonal_win == 4)
-        return true;
-
-    r=0;
-    c=0;
-
-
-    for (int i =3; i <=6 ; ++i) {
-        c=i;
-        for (int j = 0; j <5 ; ++j) {
-
-            if (diagonal_win == 4)
-                return true;
-
-            if (i==3 && r==3)
-                break;
-
-            if (i==4 && r==4)
-                break;
-
-
-
-            else{
-                if (board[r][c]==board[r+1][c-1] && board[r][c]!='0'){
-                    ++diagonal_win;
-                    ++r;
-                    --c;
-
-                }
-
-                else{
-                    diagonal_win=1;
-                    ++r;
-                    --c;
-                }
-            }
-
-        }
-        r=0;
-    }
-
-    if (diagonal_win == 4)
-        return true;
-
-    r=5;
-    c=0;
-    diagonal_win=1;
-
-    for (int i = 2; i <=3 ; ++i) {
-        c=i;
-
-        for (int j = 0; j <4 ; ++j) {
-
-
-            if (diagonal_win == 4)
-                return true;
-
-            if (i==3 && r==2)
-                break;
-
-            else{
-                if (board[r][c]==board[r-1][c+1] && board[r][c]!='0'){
-                    ++c;
-                    --r;
-                    ++diagonal_win;
-                }
-
-                else{
-                    ++c;
-                    --r;
-                    diagonal_win=1;
+            if (j - 3 >= 0 && i + 3 < rows) {
+                if (currentCell != '0' &&
+                    currentCell == board[i + 1][j - 1] &&
+                    currentCell == board[i + 2][j - 2] &&
+                    currentCell == board[i + 3][j - 3]) {
+                    return true;
                 }
             }
         }
-        r=5;
     }
-
-    if (diagonal_win == 4)
-        return true;
-
 
     return false;
 }
